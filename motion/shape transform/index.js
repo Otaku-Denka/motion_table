@@ -170,14 +170,15 @@ var loop;
 					transAntiTri()
 					setTimeout(function(){
 						transAntiHex()
-					},5000)
-				},5000)
-			},5000)
+					},4000)
+				},4000)
+			},4000)
 		},1000)
 
 	};
 
 	play()
+	setInterval(play,17000)
 
 
 
