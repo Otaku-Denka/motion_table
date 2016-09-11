@@ -11,18 +11,183 @@ var X = canvas.width/2;
 var Y = canvas.height/2;
 var R = 100;
 var size = 100;
+var triSize = 50;
+var speed = 0.5;
+var angle = 6;
+var loop;
 
   
-  ctx.beginPath();
-  ctx.strokeStyle = "#1987E5";
-	ctx.arc(X ,Y ,R,0,Math.PI*2,false);
-	ctx.stroke()
 
-	ctx.beginPath();
-	ctx.moveTo(X + size * Math.cos(0), Y + size * Math.sin(0));
-	for(var side = 0; side < 7 ; side ++){
-		ctx.lineTo(X + size * Math.cos(side * Math.PI / 3), Y + size * Math.sin(side * Math.PI / 3))
+	function drawHexagon(){
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		ctx.beginPath();
+		ctx.moveTo(X + size * Math.sin(0), Y - size * Math.cos(0));
+		
+		for(var side = 0; side < 7 ; side ++){
+			ctx.lineTo(X + size * Math.sin(side * 2 * Math.PI / angle), Y - size * Math.cos(side * 2 * Math.PI / angle))
+		}
+		ctx.stroke()
+
 	}
-	ctx.stroke()
+
+	function transTriangle(){
+		var size2 = size - speed;
+
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		ctx.beginPath();
+		ctx.moveTo(X + size * Math.sin(0), Y - size * Math.cos(0));
+		
+		
+		ctx.lineTo(X + size * Math.sin(0 * 2 * Math.PI / angle), Y - size * Math.cos(0 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size2 * Math.sin(1 * 2 * Math.PI / angle), Y - size2 * Math.cos(1 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size * Math.sin(2 * 2 * Math.PI / angle), Y - size * Math.cos(2 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size2 * Math.sin(3 * 2 * Math.PI / angle), Y - size2 * Math.cos(3 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size * Math.sin(4 * 2 * Math.PI / angle), Y - size * Math.cos(4 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size2 * Math.sin(5 * 2 * Math.PI / angle), Y - size2 * Math.cos(5 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size * Math.sin(6 * 2 * Math.PI / angle), Y - size * Math.cos(6 * 2 * Math.PI / angle))
+	
+		ctx.stroke()
+
+	
+		speed += 0.5;
+		loop = setTimeout(function(){
+			transTriangle()
+			
+			if (size2 == 50){
+				speed = 0;
+				size2 = 50;
+				clearTimeout(loop)
+			}
+		},1000/30);
+
+	}
+
+	function transHexagon(){
+		var size2 = triSize + speed;
+
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		ctx.beginPath();
+		ctx.moveTo(X + size * Math.sin(0), Y - size * Math.cos(0));
+		
+		
+		ctx.lineTo(X + size * Math.sin(0 * 2 * Math.PI / angle), Y - size * Math.cos(0 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size2 * Math.sin(1 * 2 * Math.PI / angle), Y - size2 * Math.cos(1 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size * Math.sin(2 * 2 * Math.PI / angle), Y - size * Math.cos(2 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size2 * Math.sin(3 * 2 * Math.PI / angle), Y - size2 * Math.cos(3 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size * Math.sin(4 * 2 * Math.PI / angle), Y - size * Math.cos(4 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size2 * Math.sin(5 * 2 * Math.PI / angle), Y - size2 * Math.cos(5 * 2 * Math.PI / angle))
+		ctx.lineTo(X + size * Math.sin(6 * 2 * Math.PI / angle), Y - size * Math.cos(6 * 2 * Math.PI / angle))
+	
+		ctx.stroke()
+
+	
+		speed += 0.5;
+		loop = setTimeout(function(){
+			transHexagon()
+			if (size2 == 100){
+				speed = 0;
+				size2 = 100;
+				clearTimeout(loop)
+			}
+		},1000/30);
+	}
+
+
+	function transAntiTri(){
+		var size2 = size - speed;
+
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		
+		ctx.beginPath();
+		ctx.moveTo(X -size * Math.sin(0), Y + size * Math.cos(0));
+		
+
+		
+		ctx.lineTo(X - size * Math.sin(0 * 2 * Math.PI / angle), Y + size * Math.cos(0 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size2 * Math.sin(1 * 2 * Math.PI / angle), Y + size2 * Math.cos(1 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size * Math.sin(2 * 2 * Math.PI / angle), Y + size * Math.cos(2 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size2 * Math.sin(3 * 2 * Math.PI / angle), Y + size2 * Math.cos(3 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size * Math.sin(4 * 2 * Math.PI / angle), Y + size * Math.cos(4 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size2 * Math.sin(5 * 2 * Math.PI / angle), Y + size2 * Math.cos(5 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size * Math.sin(6 * 2 * Math.PI / angle), Y + size * Math.cos(6 * 2 * Math.PI / angle))
+		
+		ctx.stroke()
+
+	
+		speed += 0.5;
+		loop = setTimeout(function(){
+			transAntiTri()
+			
+			if (size2 == 50){
+				speed = 0;
+				size2 = 50;
+				clearTimeout(loop)
+			}
+		},1000/30);
+	}
+
+	function transAntiHex(){
+		var size2 = triSize + speed;
+
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		
+		ctx.beginPath();
+		ctx.moveTo(X -size * Math.sin(0), Y + size * Math.cos(0));
+		
+
+		
+		ctx.lineTo(X - size * Math.sin(0 * 2 * Math.PI / angle), Y + size * Math.cos(0 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size2 * Math.sin(1 * 2 * Math.PI / angle), Y + size2 * Math.cos(1 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size * Math.sin(2 * 2 * Math.PI / angle), Y + size * Math.cos(2 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size2 * Math.sin(3 * 2 * Math.PI / angle), Y + size2 * Math.cos(3 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size * Math.sin(4 * 2 * Math.PI / angle), Y + size * Math.cos(4 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size2 * Math.sin(5 * 2 * Math.PI / angle), Y + size2 * Math.cos(5 * 2 * Math.PI / angle))
+		ctx.lineTo(X - size * Math.sin(6 * 2 * Math.PI / angle), Y + size * Math.cos(6 * 2 * Math.PI / angle))
+		
+		ctx.stroke()
+
+	
+		speed += 0.5;
+		loop = setTimeout(function(){
+			transAntiHex()
+			
+			if (size2 == 100){
+				speed = 0;
+				size2 = 100;
+				clearTimeout(loop)
+			}
+		},1000/30);
+	}
+
+
+
+	// transHexagon()
+	// transTriangle()
+	// transAntiTri()
+	// transAntiHex()
+	function play(){
+		drawHexagon()
+		setTimeout(function(){
+			transTriangle()
+			setTimeout(function(){
+				transHexagon()
+				setTimeout(function(){
+					transAntiTri()
+					setTimeout(function(){
+						transAntiHex()
+						setTimeout(function(){
+							play()
+						},5000)
+					},5000)
+				},5000)
+			},5000)
+		},1000)
+
+	};
+
+	play()
+
+
+
 
 	
