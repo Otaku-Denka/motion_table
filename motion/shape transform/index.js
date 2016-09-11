@@ -178,7 +178,6 @@ var loop;
 	};
 
 	play()
-	setInterval(play,21000)
 
 
 
