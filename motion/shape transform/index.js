@@ -58,7 +58,7 @@ var loop;
 				size2 = 50;
 				clearTimeout(loop)
 			}
-		},1000/30);
+		},1000/60);
 
 	}
 
@@ -89,7 +89,7 @@ var loop;
 				size2 = 100;
 				clearTimeout(loop)
 			}
-		},1000/30);
+		},1000/60);
 	}
 
 
@@ -123,7 +123,7 @@ var loop;
 				size2 = 50;
 				clearTimeout(loop)
 			}
-		},1000/30);
+		},1000/60);
 	}
 
 	function transAntiHex(){
@@ -156,15 +156,10 @@ var loop;
 				size2 = 100;
 				clearTimeout(loop)
 			}
-		},1000/30);
+		},1000/60);
 	}
 
 
-
-	// transHexagon()
-	// transTriangle()
-	// transAntiTri()
-	// transAntiHex()
 	function play(){
 		drawHexagon()
 		setTimeout(function(){
@@ -175,9 +170,6 @@ var loop;
 					transAntiTri()
 					setTimeout(function(){
 						transAntiHex()
-						setTimeout(function(){
-							play()
-						},5000)
 					},5000)
 				},5000)
 			},5000)
@@ -186,6 +178,7 @@ var loop;
 	};
 
 	play()
+	setInterval(play,21000)
 
 
 
