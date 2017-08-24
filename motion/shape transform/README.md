@@ -1,1 +1,1 @@
-https://Otaku-Denka.github.io/motion_table/tree/master/motion/shape%20transform
+https://otaku-denka.github.io/motion_table/motion/shape%20transform
